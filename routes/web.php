@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
 
@@ -23,6 +24,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('items',[ItemController::class, 'index'])->name('items');
+
+Route::group(['prefix' => 'employee', 'as' => 'employee.'], function(){
+    Route::get('/', [EmployeeController::class, "index"])->name('index');
+    Route::get('/create', [EmployeeController::class, "create"])->name('create');
+    Route::get('/{id}/show', [EmployeeController::class, "show"])->name('show');
+});
 
 
 require __DIR__.'/auth.php';
