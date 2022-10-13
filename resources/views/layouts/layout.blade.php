@@ -8,6 +8,7 @@
     
     <link rel="stylesheet" href="{{ asset('assets/css/main/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main/app-dark.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/extensions/toastify-js/src/toastify.css') }}">
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.svg" type="image/x-icon') }}">
     <link rel="shortcut icon" href="{{ asset('assets/images/logo/favicon.png" type="image/png') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/pages/fontawesome.css') }}">
@@ -36,6 +37,48 @@
     <script src="{{ asset('assets/js/app.js') }}"></script>
     
 <script src="{{ asset('assets/extensions/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/extensions/toastify-js/src/toastify.js') }}"></script>
+<script>
+        @if (Session::has('failed'))
+            Toastify({
+                text: "{{ Session::get('failed') }}",
+                duration: 3000,
+                style: {
+                    background: '#c0392b'
+                },
+                close: true
+            }).showToast();
+        @endif
+        @if (Session::has('success'))
+            Toastify({
+                text: "{{ Session::get('success') }}",
+                duration: 3000,
+                style: {
+                    background: '#27ae60'
+                },
+                close: true
+            }).showToast();
+        @endif
+        @if(isset($errors) && count($errors) > 0)
+            @forelse ($errors->messages() as $index => $values)
+                    Toastify({
+                        text: `
+                            {{ $index }}
+                            @foreach ($values as $value)
+                                {{ $value }} <br>
+                            @endforeach
+                            `,
+                        duration: 3000,
+                        style: {
+                            background: '#c0392b'
+                        },
+                        close: true
+                    }).showToast();
+            @empty
+                
+            @endforelse
+        @endif
+</script>
 @yield('script')
 
 </body>

@@ -24,43 +24,40 @@
             </div>
 
             <div class="card-body">
-                <form action="" method="POST">
+                <form action="{{ route('employee.edit', $data->id) }}" method="POST">
                     <div class="row">
                         @csrf
                         @method('PUT')
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="basicInput">Basic Input</label>
-                                <input type="text" class="form-control" id="basicInput" placeholder="Enter email">
+                                <label for="nip">NIP</label>
+                                <input type="text" name="nip" class="form-control" id="nip" placeholder="nip" value="{{ $data->nip }}">
                             </div>
-    
                             <div class="form-group">
-                                <label for="helpInputTop">Input text with help</label>
-                                <small class="text-muted">eg.<i>someone@example.com</i></small>
-                                <input type="text" class="form-control" id="helpInputTop">
-                            </div>
-    
-                            <div class="form-group">
-                                <label for="helperText">With Helper Text</label>
-                                <input type="text" id="helperText" class="form-control" placeholder="Name">
-                                <p><small class="text-muted">Find helper text here for given textbox.</small></p>
+                                <label for="nama">Nama</label>
+                                <input type="text" name="name" class="form-control" id="nama" placeholder="nama" value="{{ $data->name }}">
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="disabledInput">Disabled Input</label>
-                                <input type="text" class="form-control" id="disabledInput" placeholder="Disabled Text"
-                                    disabled>
+                                <label for="birth_date">Birth Date</label>
+                                <input type="date" name="birth_date" class="form-control" id="birth_date" placeholder="birth_date" value="{{ $data->birth_date }}">
                             </div>
                             <div class="form-group">
-                                <label for="disabledInput">Readonly Input</label>
-                                <input type="text" class="form-control" id="readonlyInput" readonly="readonly"
-                                    value="You can't update me :P">
+                                <label for="salary">Salary</label>
+                                <input type="text" name="salary" class="form-control" id="salary" placeholder="salary" value="{{ $data->salary }}">
                             </div>
-    
+                        </div>
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label for="disabledInput">Static Text</label>
-                                <p class="form-control-static" id="staticInput">email@mazer.com</p>
+                                <label for="phone_number">Phone Number</label>
+                                <input type="text" name="phone_number" class="form-control" id="phone_number" placeholder="phone_number" value="{{ $data->phone_number }}">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <textarea name="address" id="address" cols="30" rows="10" placeholder="address" class="form-control">{{ $data->address }}</textarea>
                             </div>
                         </div>
                         <div class="col-12">

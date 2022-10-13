@@ -17,6 +17,14 @@
                 <span>Employee</span>
             </a>
         </li>
+
+        <li
+            class="sidebar-item">
+            <a href="{{ route('logout') }}" class='sidebar-link'>
+                <i class="bi  bi-person-badge-fill"></i>
+                <span>Log Out</span>
+            </a>
+        </li>
         
         
         <li class="sidebar-title">Raise Support</li>

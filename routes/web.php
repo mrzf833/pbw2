@@ -28,7 +28,11 @@ Route::get('items',[ItemController::class, 'index'])->name('items');
 Route::group(['prefix' => 'employee', 'as' => 'employee.'], function(){
     Route::get('/', [EmployeeController::class, "index"])->name('index');
     Route::get('/create', [EmployeeController::class, "create"])->name('create');
+    Route::post('/', [EmployeeController::class, "store"])->name('store');
+    Route::get('/datatables', [EmployeeController::class, "datatables"])->name('datatables');
     Route::get('/{id}/show', [EmployeeController::class, "show"])->name('show');
+    Route::put('/{id}/edit', [EmployeeController::class, "edit"])->name('edit');
+    Route::delete('/{id}/delete', [EmployeeController::class, "destroy"])->name('destroy');
 });
 
 
