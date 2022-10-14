@@ -25,7 +25,7 @@ Route::get('/dashboard', function () {
 
 Route::get('items',[ItemController::class, 'index'])->name('items');
 
-Route::group(['prefix' => 'employee', 'as' => 'employee.'], function(){
+Route::group(['prefix' => 'employee', 'as' => 'employee.', 'middleware' => ['auth']], function(){
     Route::get('/', [EmployeeController::class, "index"])->name('index');
     Route::get('/create', [EmployeeController::class, "create"])->name('create');
     Route::post('/', [EmployeeController::class, "store"])->name('store');
