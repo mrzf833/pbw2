@@ -25,14 +25,14 @@ Route::get('/dashboard', function () {
 
 Route::get('items',[ItemController::class, 'index'])->name('items');
 
-Route::group(['prefix' => 'employee', 'as' => 'employee.', 'middleware' => ['auth']], function(){
-    Route::get('/', [EmployeeController::class, "index"])->name('index');
-    Route::get('/create', [EmployeeController::class, "create"])->name('create');
-    Route::post('/', [EmployeeController::class, "store"])->name('store');
+Route::group(['prefix' => 'employee', 'as' => 'employee.'], function(){
+    Route::get('/', [EmployeeController::class, "index"])->name('index')->middleware('auth');
+    Route::get('/create', [EmployeeController::class, "create"])->name('create')->middleware('auth');
+    Route::post('/', [EmployeeController::class, "store"])->name('store')->middleware('auth');
     Route::get('/datatables', [EmployeeController::class, "datatables"])->name('datatables');
-    Route::get('/{id}/show', [EmployeeController::class, "show"])->name('show');
-    Route::put('/{id}/edit', [EmployeeController::class, "edit"])->name('edit');
-    Route::delete('/{id}/delete', [EmployeeController::class, "destroy"])->name('destroy');
+    Route::get('/{id}/show', [EmployeeController::class, "show"])->name('show')->middleware('auth');
+    Route::put('/{id}/edit', [EmployeeController::class, "edit"])->name('edit')->middleware('auth');
+    Route::delete('/{id}/delete', [EmployeeController::class, "destroy"])->name('destroy')->middleware('auth');
 });
 
 
